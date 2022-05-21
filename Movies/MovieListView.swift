@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct MovieListView: View {
+    
+    var viewModel = MovieListViewModel()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        NavigationView {
+            
+            Text("Hello, world!")
+                .padding()
+        }
+        .onAppear(perform:
+                    viewModel.fetch
+        )
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

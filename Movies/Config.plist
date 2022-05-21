@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>reviews</key>
+	<string>/{movieId}/reviews?api_key={key}&amp;language=en-US&amp;page=1</string>
+	<key>movieDetails</key>
+	<string>/movie/{movieId}?api_key={key}&amp;append_to_response=videos</string>
+	<key>movies</key>
+	<string>/discover/movie?api_key={key}&amp;language=en-US&amp;sort_by=popularity.desc&amp;include_video=true&amp;page=1&amp;release_date.gte={date}&amp;with_watch_monetization_types=flatrate </string>
+	<key>imageBase</key>
+	<string>http://image.tmdb.org/t/p/w500/{imageId}</string>
+	<key>base</key>
+	<string>https://api.themoviedb.org/3</string>
+	<key>API_key</key>
+	<string></string>
+</dict>
+</plist>

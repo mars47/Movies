@@ -9,31 +9,31 @@ import Foundation
 
 class URLFactory {
     
-    var base = ""
-    var api_key = ""
-    
-    init() {
-        base = config()["base"] as! String
-        api_key = config()["API_key"] as! String
+    static private var base : String {
+        URLFactory.config()["base"] as! String
+    }
+    static private var api_key : String {
+        URLFactory.config()["API_key"] as! String
     }
     
-    func movies() -> URL! {
+    static func upcomingMovies() -> URL {
         
-         var urlString = base + ( config()["movies"] as! String )
-         urlString = urlString.replacingOccurrences(of: "{key}", with: "\(api_key)")
-         urlString = urlString.replacingOccurrences(of: "{date}", with: Date().stringValue)
-         return URL(string: urlString)
+        var urlString = base + ( config()["movies"] as! String )
+        urlString = urlString.replacingOccurrences(of: "{key}", with: api_key)
+        urlString = urlString.replacingOccurrences(of: "{date}", with: Date().stringValue)
+        return URL(string: urlString)!
     }
     
-    func movieDetails(movieId: String) -> URL! {
+    static func movieDetails(movieId: String) -> URL {
         
-         var urlString = base + ( config()["movieDetails"] as! String )
-         urlString = urlString.replacingOccurrences(of: "{key}", with: "\(api_key)")
-         urlString = urlString.replacingOccurrences(of: "{movieId}", with: movieId)
-         return URL(string: urlString)
+        var urlString = base + ( config()["movieDetails"] as! String )
+        urlString = urlString.replacingOccurrences(of: "{key}", with: api_key)
+        urlString = urlString.replacingOccurrences(of: "{movieId}", with: movieId)
+        return URL(string: urlString)!
     }
     
-    private func config() -> NSDictionary {
+    static func config() -> NSDictionary {
+        
         guard
             let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
             let config = NSDictionary(contentsOfFile: path)
@@ -41,6 +41,7 @@ class URLFactory {
             fatalError("Config.plist file not found")
         }
         return config
+        //--no-skip-worktree Config.plist
     }
 }
 

@@ -17,9 +17,9 @@ struct MovieListView: View {
             Text("Hello, world!")
                 .padding()
         }
-        .onAppear(perform:
-                    viewModel.fetch
-        )
+        .task {
+            await viewModel.fetchUpcomingMovies()
+        }
     }
     
 }

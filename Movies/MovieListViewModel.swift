@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct MovieListViewModel {
+class MovieListViewModel: ObservableObject {
     
-    func fetch() {
+    @Published var movies: [Movie]?
+    
+    func fetchUpcomingMovies() async {
         
+        movies = await NetworkManager.fetchUpcomingMovies()?.movies
     }
 }

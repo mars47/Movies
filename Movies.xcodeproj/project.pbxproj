@@ -15,9 +15,10 @@
 		07F447DE2839309D0034A69B /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F447DD2839309D0034A69B /* Config.plist */; };
 		07F447E1283930C90034A69B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447E0283930C90034A69B /* NetworkManager.swift */; };
 		07F447E5283949C60034A69B /* URLFactory .swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447E4283949C60034A69B /* URLFactory .swift */; };
-		07F447E8283979BB0034A69B /* Date+StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447E7283979BB0034A69B /* Date+StringValue.swift */; };
+		07F447E8283979BB0034A69B /* Date+stringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447E7283979BB0034A69B /* Date+stringValue.swift */; };
 		07F447EB28399B150034A69B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EA28399B150034A69B /* Movie.swift */; };
 		07F447ED283B00060034A69B /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EC283B00060034A69B /* Root.swift */; };
+		07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F0283BDB450034A69B /* View+roundedCorners.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +31,11 @@
 		07F447DD2839309D0034A69B /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		07F447E0283930C90034A69B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		07F447E4283949C60034A69B /* URLFactory .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLFactory .swift"; sourceTree = "<group>"; };
-		07F447E7283979BB0034A69B /* Date+StringValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StringValue.swift"; sourceTree = "<group>"; };
+		07F447E7283979BB0034A69B /* Date+stringValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+stringValue.swift"; sourceTree = "<group>"; };
 		07F447EA28399B150034A69B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		07F447EC283B00060034A69B /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		07F447EE283BBA750034A69B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		07F447F0283BDB450034A69B /* View+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+roundedCorners.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,7 @@
 		07F447CC283920530034A69B /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				07F447EE283BBA750034A69B /* Info.plist */,
 				07F447CD283920530034A69B /* MoviesApp.swift */,
 				07F447E2283932480034A69B /* Views */,
 				07F447DF283930A80034A69B /* Network */,
@@ -114,7 +118,8 @@
 		07F447E6283979850034A69B /* Extensions  */ = {
 			isa = PBXGroup;
 			children = (
-				07F447E7283979BB0034A69B /* Date+StringValue.swift */,
+				07F447E7283979BB0034A69B /* Date+stringValue.swift */,
+				07F447F0283BDB450034A69B /* View+roundedCorners.swift */,
 			);
 			name = "Extensions ";
 			sourceTree = "<group>";
@@ -200,12 +205,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F447EB28399B150034A69B /* Movie.swift in Sources */,
+				07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */,
 				07F447ED283B00060034A69B /* Root.swift in Sources */,
 				07F447E1283930C90034A69B /* NetworkManager.swift in Sources */,
 				07F447D0283920530034A69B /* MovieListView.swift in Sources */,
 				07F447CE283920530034A69B /* MoviesApp.swift in Sources */,
 				07F447DC2839256F0034A69B /* MovieListViewModel.swift in Sources */,
-				07F447E8283979BB0034A69B /* Date+StringValue.swift in Sources */,
+				07F447E8283979BB0034A69B /* Date+stringValue.swift in Sources */,
 				07F447E5283949C60034A69B /* URLFactory .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +344,7 @@
 				DEVELOPMENT_TEAM = 666EPUUFJ9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Movies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -367,6 +374,7 @@
 				DEVELOPMENT_TEAM = 666EPUUFJ9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Movies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

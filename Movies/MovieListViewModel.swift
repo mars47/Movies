@@ -9,10 +9,17 @@ import Foundation
 
 class MovieListViewModel: ObservableObject {
     
-    @Published var movies: [Movie]?
-    
+    var movies: [Movie] = []
+    @Published var isFetching = false
+   
     func fetchUpcomingMovies() async {
         
-        movies = await NetworkManager.fetchUpcomingMovies()?.movies
+        isFetching = true
+        guard let movies = await NetworkManager.fetchUpcomingMovies()?.movies else { return }
+        DispatchQueue.main.async {
+            self.movies = movies
+            self.isFetching = false
+        }
+
     }
 }

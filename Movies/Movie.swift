@@ -6,26 +6,40 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Movie Model
 
-struct Movie : Codable {
+struct Movie : Codable, Identifiable {
     
-    let id: Int?
-    let original_title: String?
-    let overview: String?
-    let popularity: Double?
-    let poster_path: String?
-    let release_date: String?
-    let title : String?
-    let vote_average: Double?
-    let genre_ids: GenreData?
+    enum CodingKeys: String, CodingKey {
+        case id, original_title, overview, popularity
+        case poster_path, release_date, title, vote_average
+        case genreData = "genre_ids"
+        case homepage, revenue, status, tagline, videos
+    }
     
+    let id: Int
+    let original_title: String
+    let overview: String
+    let popularity: Double
+    let poster_path: String
+    let release_date: String
+    let title : String
+    let vote_average: Double
+    let genreData: GenreData?
+ 
+    /** Movie details **/
     let homepage: String?
     let revenue: Int?
     let status: String?
     let tagline: String?
     let videos: [VideoResult]?
+    
+    /** Non-codable custom properties **/
+    var imageUrl: URL? {
+        return URLFactory.imageURL(for: poster_path)
+    }
 }
 
 // MARK:  Movie Child Models
@@ -42,7 +56,7 @@ struct Video: Codable {
 
 enum GenreData: Codable {
     
-    case ints([Int])
+    case ids([Int])
     case objects([Genre])
 
     init(from decoder: Decoder) throws {
@@ -50,7 +64,7 @@ enum GenreData: Codable {
         let container = try decoder.singleValueContainer()
         
         if let genres = try? container.decode([Int].self) {
-            self = .ints(genres)
+            self = .ids(genres)
             return
         }
         
@@ -58,13 +72,13 @@ enum GenreData: Codable {
             self = .objects(genres)
             return
         }
-        throw DecodingError.typeMismatch(GenreData.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for MyGenre"))
+        throw DecodingError.typeMismatch(GenreData.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for GenreData"))
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ints(let x):
+        case .ids(let x):
             try container.encode(x)
         case .objects(let x):
             try container.encode(x)

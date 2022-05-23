@@ -32,6 +32,13 @@ class URLFactory {
         return URL(string: urlString)!
     }
     
+    static func imageURL(for id: String) -> URL? {
+        
+        var urlString = config()["imageURL"] as! String
+        urlString = urlString.replacingOccurrences(of: "{imageId}", with: id)
+        return URL(string: urlString)
+    }
+    
     static func config() -> NSDictionary {
         
         guard

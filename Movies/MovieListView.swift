@@ -19,12 +19,14 @@ struct MovieListView: View {
                 LoadingView()
             } else {
                 List {
-                    Section(header: Text("Upcoming Movies In Cinemas")) {
+                    Section(header: Text("IN CINEMAS NOW")) {
                         ForEach(viewModel.movies) { movie in
                             MovieItemView(movie: movie)
+                            Divider()
                         }
                     }
                 }
+                .listStyle(.plain)
                 .navigationBarTitle(Text("Latest Movies"), displayMode: .large)
             }
         }
@@ -40,30 +42,36 @@ struct MovieItemView: View {
     
     var body: some View {
         
-        ZStack(alignment: .topLeading){
-            AsyncImage(url: movie.imageUrl) { image in
-                image.resizable()
-                    .scaledToFill()
-            } placeholder: {
-                ProgressView()
+        VStack(alignment:.leading ,spacing: 8){
+            ZStack(alignment: .topLeading){
+                AsyncImage(url: movie.imageUrl) { image in
+                    image.resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    ProgressView()
+                }
+                Text(movie.title)
+                    .bold()
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray.opacity(0.65))
             }
-            .padding(.bottom, 8)
-            Text(movie.title)
-                .bold()
-                .listRowSeparator(.hidden)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.65))
-        }
-        .listRowInsets(EdgeInsets())
-        HStack {
-            Text("Release Date: \(movie.release_date)")
-            Spacer()
+            .cornerRadius(12)
+            HStack() {
+                Text("Released: \(movie.releaseDate)")
+                    .fontWeight(.light)
+                Spacer()
+                HStack() {
+                    Text(movie.voteAverageString)
+                        .fontWeight(.light)
+                    Image(systemName: "star.fill")
+                }
+                .foregroundColor(Color.yellow)
+            }
+
+            OverviewExpandView(movie: movie)
         }
         .listRowSeparator(.hidden)
-
-        OverviewExpandView(movie: movie)
-        Divider()
     }
 }
 
@@ -80,6 +88,7 @@ struct OverviewExpandView: View {
         
         HStack{
             Text("Overview")
+                .bold()
             Spacer()
             Button(
                 action: {
@@ -91,17 +100,14 @@ struct OverviewExpandView: View {
                     Image(systemName: imageName)
                 }
             )
-            
-            if isCollapsed {
-                EmptyView()
-            } else {
-                Text(movie.overview)
-                    .fontWeight(.regular)
-                    
-            }
         }
-        .listRowSeparator(.hidden)
         
+        if isCollapsed {
+            EmptyView()
+        } else {
+            Text(movie.overview)
+                .fontWeight(.light)
+        }
     }
 }
 

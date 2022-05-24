@@ -19,6 +19,7 @@
 		07F447EB28399B150034A69B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EA28399B150034A69B /* Movie.swift */; };
 		07F447ED283B00060034A69B /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EC283B00060034A69B /* Root.swift */; };
 		07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F0283BDB450034A69B /* View+roundedCorners.swift */; };
+		07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F2283D6D700034A69B /* String+readableDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		07F447EC283B00060034A69B /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		07F447EE283BBA750034A69B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		07F447F0283BDB450034A69B /* View+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+roundedCorners.swift"; sourceTree = "<group>"; };
+		07F447F2283D6D700034A69B /* String+readableDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+readableDate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				07F447E7283979BB0034A69B /* Date+stringValue.swift */,
 				07F447F0283BDB450034A69B /* View+roundedCorners.swift */,
+				07F447F2283D6D700034A69B /* String+readableDate.swift */,
 			);
 			name = "Extensions ";
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F447EB28399B150034A69B /* Movie.swift in Sources */,
+				07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */,
 				07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */,
 				07F447ED283B00060034A69B /* Root.swift in Sources */,
 				07F447E1283930C90034A69B /* NetworkManager.swift in Sources */,

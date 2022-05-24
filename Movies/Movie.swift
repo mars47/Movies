@@ -37,6 +37,12 @@ struct Movie : Codable, Identifiable {
     let videos: [VideoResult]?
     
     /** Non-codable custom properties **/
+    var releaseDate: String {
+        return release_date.readableDateString
+    }
+    var voteAverageString: String {
+        return String(format:"%.1f", vote_average)
+    }
     var imageUrl: URL? {
         return URLFactory.imageURL(for: poster_path)
     }

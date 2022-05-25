@@ -34,7 +34,7 @@ struct Movie : Codable, Identifiable {
     let revenue: Int?
     let status: String?
     let tagline: String?
-    let videos: [VideoResult]?
+    let videos: VideoResult?
     
     /** Non-codable custom properties **/
     var releaseDate: String {

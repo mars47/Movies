@@ -19,4 +19,15 @@ class NetworkManager {
         }
             return nil
     }
+    
+    static func fetchMovieDetails(id: String) async -> Movie? {
+                
+        do {
+            let (data, _) = try await URLSession.shared.data(from: URLFactory.movieDetails(movieId: id))
+            return try JSONDecoder().decode(Movie.self, from: data)
+        } catch {
+            print("caught: \(error)")
+        }
+            return nil
+    }
 }

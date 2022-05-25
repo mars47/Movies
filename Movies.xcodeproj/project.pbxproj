@@ -21,6 +21,7 @@
 		07F447F1283BDB450034A69B /* View+additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F0283BDB450034A69B /* View+additions.swift */; };
 		07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F2283D6D700034A69B /* String+readableDate.swift */; };
 		07F447F5283DA2370034A69B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F4283DA2370034A69B /* MovieDetailsView.swift */; };
+		07F447F8283EC14A0034A69B /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F7283EC14A0034A69B /* MovieDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		07F447F0283BDB450034A69B /* View+additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+additions.swift"; sourceTree = "<group>"; };
 		07F447F2283D6D700034A69B /* String+readableDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+readableDate.swift"; sourceTree = "<group>"; };
 		07F447F4283DA2370034A69B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		07F447F7283EC14A0034A69B /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				07F447DB2839256F0034A69B /* MovieListViewModel.swift */,
+				07F447F7283EC14A0034A69B /* MovieDetailsViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				07F447E1283930C90034A69B /* NetworkManager.swift in Sources */,
 				07F447D0283920530034A69B /* MovieListView.swift in Sources */,
 				07F447CE283920530034A69B /* MoviesApp.swift in Sources */,
+				07F447F8283EC14A0034A69B /* MovieDetailsViewModel.swift in Sources */,
 				07F447DC2839256F0034A69B /* MovieListViewModel.swift in Sources */,
 				07F447E8283979BB0034A69B /* Date+stringValue.swift in Sources */,
 				07F447E5283949C60034A69B /* URLFactory .swift in Sources */,

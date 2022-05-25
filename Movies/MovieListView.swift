@@ -43,25 +43,27 @@ struct MovieItemView: View {
     
     var body: some View {
         VStack(alignment:.leading ,spacing: 8) {
+            
             ZStack(alignment: .topLeading){
+                
                 AsyncImage(url: movie.imageUrl) { image in
-                    image.resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    ProgressView()
-                }
+                    image.resizable().scaledToFill() }
+                    placeholder: { ProgressView() }
+                
                 Text(movie.title)
-                    .bold()
-                    .padding()
-                    .frame(maxWidth: .infinity)
+                    .bold().padding().frame(maxWidth: .infinity)
                     .background(Color.gray.opacity(0.65))
-                NavigationLink(destination: Text("Second View")                        .task {
-                    
-                } ) {
-                    EmptyView()
-                }.buttonStyle(PlainButtonStyle())
+                
+                let viewModel = MovieDetailsViewModel()
+                NavigationLink(destination: MovieDetailsView(viewModel: viewModel)
+                    .task {
+                        viewModel.movie = movie
+                        await viewModel.fetchMovieDetails(id: "\(movie.id)")
+                    }) { EmptyView() }.buttonStyle(PlainButtonStyle())
+            
             }
             .cornerRadius(12)
+           
             HStack() {
                 Text("Released: \(movie.releaseDate)").fontWeight(.light)
                 Spacer()
@@ -72,7 +74,7 @@ struct MovieItemView: View {
                 .foregroundColor(Color.yellow)
             }.padding(.bottom, -8)
         }
-        OverviewExpandView(movie: movie)
+            OverviewExpandView(movie: movie)
     }
 }
 

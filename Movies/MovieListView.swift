@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MovieListView: View {
-    
+        
     @StateObject var viewModel = MovieListViewModel()
-    
+
     var body: some View {
         
         NavigationView {
@@ -21,8 +21,8 @@ struct MovieListView: View {
                 List {
                     Section(header: Text("IN CINEMAS NOW")) {
                         ForEach(viewModel.movies) { movie in
-                            MovieItemView(movie: movie)
-                            Divider()
+                            MovieItemView(movie: movie).listRowSeparator(.hidden)
+                            Divider().padding(.top, -8)
                         }
                     }
                 }
@@ -39,10 +39,10 @@ struct MovieListView: View {
 struct MovieItemView: View {
     
     var movie: Movie
+    @State private var isShowingDetailView = false
     
     var body: some View {
-        
-        VStack(alignment:.leading ,spacing: 8){
+        VStack(alignment:.leading ,spacing: 8) {
             ZStack(alignment: .topLeading){
                 AsyncImage(url: movie.imageUrl) { image in
                     image.resizable()
@@ -55,23 +55,24 @@ struct MovieItemView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.gray.opacity(0.65))
+                NavigationLink(destination: Text("Second View")                        .task {
+                    
+                } ) {
+                    EmptyView()
+                }.buttonStyle(PlainButtonStyle())
             }
             .cornerRadius(12)
             HStack() {
-                Text("Released: \(movie.releaseDate)")
-                    .fontWeight(.light)
+                Text("Released: \(movie.releaseDate)").fontWeight(.light)
                 Spacer()
                 HStack() {
-                    Text(movie.voteAverageString)
-                        .fontWeight(.light)
+                    Text(movie.voteAverageString).fontWeight(.light)
                     Image(systemName: "star.fill")
                 }
                 .foregroundColor(Color.yellow)
-            }
-
-            OverviewExpandView(movie: movie)
+            }.padding(.bottom, -8)
         }
-        .listRowSeparator(.hidden)
+        OverviewExpandView(movie: movie)
     }
 }
 
@@ -86,27 +87,20 @@ struct OverviewExpandView: View {
     
     var body: some View {
         
-        HStack{
-            Text("Overview")
-                .bold()
+        HStack {
+            Text("Overview").bold()
             Spacer()
             Button(
-                action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                        isCollapsed.toggle()
-                    }
-                },
-                label: {
-                    Image(systemName: imageName)
-                }
-            )
+                action: { withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) { isCollapsed.toggle() }},
+                label: { Image(systemName: imageName) } )
         }
-        
+
         if isCollapsed {
             EmptyView()
         } else {
             Text(movie.overview)
                 .fontWeight(.light)
+                .padding(.top, -8)
         }
     }
 }
@@ -117,7 +111,6 @@ struct LoadingView: View {
         HStack {
             ProgressView()
                 .padding(.trailing, 8)
-            
             Text("Loading...")
         }
     }
@@ -128,3 +121,4 @@ struct ContentView_Previews: PreviewProvider {
         MovieListView(viewModel: MovieListViewModel())
     }
 }
+

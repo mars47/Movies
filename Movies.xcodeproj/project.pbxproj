@@ -18,8 +18,9 @@
 		07F447E8283979BB0034A69B /* Date+stringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447E7283979BB0034A69B /* Date+stringValue.swift */; };
 		07F447EB28399B150034A69B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EA28399B150034A69B /* Movie.swift */; };
 		07F447ED283B00060034A69B /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447EC283B00060034A69B /* Root.swift */; };
-		07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F0283BDB450034A69B /* View+roundedCorners.swift */; };
+		07F447F1283BDB450034A69B /* View+additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F0283BDB450034A69B /* View+additions.swift */; };
 		07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F2283D6D700034A69B /* String+readableDate.swift */; };
+		07F447F5283DA2370034A69B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F4283DA2370034A69B /* MovieDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +37,9 @@
 		07F447EA28399B150034A69B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		07F447EC283B00060034A69B /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		07F447EE283BBA750034A69B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		07F447F0283BDB450034A69B /* View+roundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+roundedCorners.swift"; sourceTree = "<group>"; };
+		07F447F0283BDB450034A69B /* View+additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+additions.swift"; sourceTree = "<group>"; };
 		07F447F2283D6D700034A69B /* String+readableDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+readableDate.swift"; sourceTree = "<group>"; };
+		07F447F4283DA2370034A69B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				07F447CF283920530034A69B /* MovieListView.swift */,
+				07F447F4283DA2370034A69B /* MovieDetailsView.swift */,
 				07F447E32839326E0034A69B /* View Models */,
+				07F447F6283E27120034A69B /* Supporting Views */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -121,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				07F447E7283979BB0034A69B /* Date+stringValue.swift */,
-				07F447F0283BDB450034A69B /* View+roundedCorners.swift */,
+				07F447F0283BDB450034A69B /* View+additions.swift */,
 				07F447F2283D6D700034A69B /* String+readableDate.swift */,
 			);
 			name = "Extensions ";
@@ -134,6 +138,13 @@
 				07F447EA28399B150034A69B /* Movie.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		07F447F6283E27120034A69B /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Supporting Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +220,8 @@
 			files = (
 				07F447EB28399B150034A69B /* Movie.swift in Sources */,
 				07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */,
-				07F447F1283BDB450034A69B /* View+roundedCorners.swift in Sources */,
+				07F447F5283DA2370034A69B /* MovieDetailsView.swift in Sources */,
+				07F447F1283BDB450034A69B /* View+additions.swift in Sources */,
 				07F447ED283B00060034A69B /* Root.swift in Sources */,
 				07F447E1283930C90034A69B /* NetworkManager.swift in Sources */,
 				07F447D0283920530034A69B /* MovieListView.swift in Sources */,

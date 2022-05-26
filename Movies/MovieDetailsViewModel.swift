@@ -7,10 +7,10 @@
 
 import Foundation
 
-class MovieDetailsViewModel {
+class MovieDetailsViewModel: ObservableObject {
     
     @Published var movie: Movie!
-    @Published var isFetching = false
+    @Published var isFetching = true
 
     func fetchMovieDetails(id: String) async {
             

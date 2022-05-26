@@ -22,6 +22,7 @@
 		07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F2283D6D700034A69B /* String+readableDate.swift */; };
 		07F447F5283DA2370034A69B /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F4283DA2370034A69B /* MovieDetailsView.swift */; };
 		07F447F8283EC14A0034A69B /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F7283EC14A0034A69B /* MovieDetailsViewModel.swift */; };
+		07F447FA283ED9710034A69B /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447F9283ED9710034A69B /* VideoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		07F447F2283D6D700034A69B /* String+readableDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+readableDate.swift"; sourceTree = "<group>"; };
 		07F447F4283DA2370034A69B /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		07F447F7283EC14A0034A69B /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		07F447F9283ED9710034A69B /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		07F447F6283E27120034A69B /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				07F447F9283ED9710034A69B /* VideoView.swift */,
 			);
 			name = "Supporting Views";
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				07F447DC2839256F0034A69B /* MovieListViewModel.swift in Sources */,
 				07F447E8283979BB0034A69B /* Date+stringValue.swift in Sources */,
 				07F447E5283949C60034A69B /* URLFactory .swift in Sources */,
+				07F447FA283ED9710034A69B /* VideoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

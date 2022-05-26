@@ -9,11 +9,22 @@ import SwiftUI
 
 struct MovieDetailsView: View {
     
-    let viewModel: MovieDetailsViewModel
+    @StateObject var viewModel: MovieDetailsViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if viewModel.isFetching {
+            LoadingView()
+        } else {
+        
+        VideoView(videoID: viewModel.movie.trailerId)
+            .frame(minHeight:0, maxHeight: UIScreen.main.bounds.height / 3.5)
+            .cornerRadius(12)
+            .padding(.horizontal, 12)
+             Spacer()
+        }
     }
 }
+    
 
 //struct MovieDetailsView_Previews: PreviewProvider {
 //    static var previews: some View {

@@ -39,6 +39,7 @@ struct MovieListView: View {
 struct MovieItemView: View {
     
     var movie: Movie
+    let viewModel = MovieDetailsViewModel()
     @State private var isShowingDetailView = false
     
     var body: some View {
@@ -54,7 +55,6 @@ struct MovieItemView: View {
                     .bold().padding().frame(maxWidth: .infinity)
                     .background(Color.gray.opacity(0.65))
                 
-                let viewModel = MovieDetailsViewModel()
                 NavigationLink(destination: MovieDetailsView(viewModel: viewModel)
                     .task {
                         viewModel.movie = movie
@@ -71,8 +71,8 @@ struct MovieItemView: View {
                     Text(movie.voteAverageString).fontWeight(.light)
                     Image(systemName: "star.fill")
                 }
-                .foregroundColor(Color.yellow)
-            }.padding(.bottom, -8)
+                    .foregroundColor(Color.yellow)
+            }   .padding(.bottom, -8)
         }
             OverviewExpandView(movie: movie)
     }

@@ -37,6 +37,11 @@ struct Movie : Codable, Identifiable {
     let videos: VideoResult?
     
     /** Non-codable custom properties **/
+    var trailerId: String {
+        let id = videos?.results.first(where: { $0.type == "Trailer"})?.key
+        return id ?? videos?.results.first?.key ?? ""
+    }
+    
     var releaseDate: String {
         return release_date.readableDateString
     }
@@ -58,6 +63,7 @@ struct Video: Codable {
     let key: String?
     let published_at: String?
     let site: String?
+    let type: String?
 }
 
 enum GenreData: Codable {

@@ -15,8 +15,8 @@ struct Movie : Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id, original_title, overview, popularity
         case poster_path, release_date, title, vote_average
-        case genreData = "genre_ids"
-        case homepage, revenue, status, tagline, videos
+        case genreData = "genre_ids", backdrop_path
+        case homepage, revenue, status, tagline, videos, runtime
     }
     
     let id: Int
@@ -24,6 +24,7 @@ struct Movie : Codable, Identifiable {
     let overview: String
     let popularity: Double
     let poster_path: String
+    let backdrop_path: String
     let release_date: String
     let title : String
     let vote_average: Double
@@ -31,6 +32,7 @@ struct Movie : Codable, Identifiable {
  
     /** Movie details **/
     let homepage: String?
+    let runtime: Int?
     let revenue: Int?
     let status: String?
     let tagline: String?
@@ -41,15 +43,17 @@ struct Movie : Codable, Identifiable {
         let id = videos?.results.first(where: { $0.type == "Trailer"})?.key
         return id ?? videos?.results.first?.key ?? ""
     }
-    
     var releaseDate: String {
         return release_date.readableDateString
     }
     var voteAverageString: String {
         return String(format:"%.1f", vote_average)
     }
-    var imageUrl: URL? {
+    var posterUrl: URL? {
         return URLFactory.imageURL(for: poster_path)
+    }
+    var backdropUrl: URL? {
+        return URLFactory.imageURL(for: backdrop_path)
     }
 }
 

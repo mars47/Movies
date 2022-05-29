@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieListView: View {
         
     @StateObject var viewModel = MovieListViewModel()
-
+        
     var body: some View {
         
         NavigationView {
@@ -20,13 +20,18 @@ struct MovieListView: View {
             } else {
                 List {
                     Section(header: Text("IN CINEMAS NOW")) {
+                        
                         ForEach(viewModel.movies) { movie in
-                            MovieItemView(movie: movie).listRowSeparator(.hidden)
-                            Divider().padding(.top, -8)
+                            MovieItemView(movie:movie)
+                                .listRowSeparator(.hidden)
+                            Divider()
                         }
+                        .listRowBackground(Color.clear)
                     }
                 }
-                .listStyle(.plain)
+               
+                
+                //.listStyle(.plain)
                 .navigationBarTitle(Text("Latest Movies"), displayMode: .large)
             }
         }
@@ -39,50 +44,58 @@ struct MovieListView: View {
 struct MovieItemView: View {
     
     var movie: Movie
-    let viewModel = MovieDetailsViewModel()
-    @State private var isShowingDetailView = false
     
     var body: some View {
-        VStack(alignment:.leading ,spacing: 8) {
+        
+        VStack(spacing:0) {
             
             ZStack(alignment: .topLeading){
                 
-                AsyncImage(url: movie.imageUrl) { image in
+                AsyncImage(url: movie.posterUrl) { image in
                     image.resizable().scaledToFill() }
-                    placeholder: { ProgressView() }
+            placeholder: { ProgressView() }
                 
                 Text(movie.title)
                     .bold().padding().frame(maxWidth: .infinity)
-                    .background(Color.gray.opacity(0.65))
+                    .background(Color.white.opacity(0.65))
                 
+                let viewModel = MovieDetailsViewModel(movie: movie)
                 NavigationLink(destination: MovieDetailsView(viewModel: viewModel)
                     .task {
-                        viewModel.movie = movie
                         await viewModel.fetchMovieDetails(id: "\(movie.id)")
                     }) { EmptyView() }.buttonStyle(PlainButtonStyle())
-            
+                
             }
-            .cornerRadius(12)
-           
-            HStack() {
-                Text("Released: \(movie.releaseDate)").fontWeight(.light)
-                Spacer()
+            .cornerRadius(12, corners: [.topLeft, .topRight])
+            .buttonStyle(BorderlessButtonStyle())
+            
+            VStack(spacing:8) {
+                
                 HStack() {
-                    Text(movie.voteAverageString).fontWeight(.light)
-                    Image(systemName: "star.fill")
-                }
+                    Text("Released: \(movie.releaseDate)").fontWeight(.light)
+                    Spacer()
+                    HStack() {
+                        Text(movie.voteAverageString).fontWeight(.light)
+                        Image(systemName: "star.fill")
+                    }
                     .foregroundColor(Color.yellow)
-            }   .padding(.bottom, -8)
-        }
-            OverviewExpandView(movie: movie)
+                }
+                
+                OverviewExpandView(movie: movie)
+            }
+            .padding(8)
+            .background(Color.white)
+            .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
+            .buttonStyle(BorderlessButtonStyle())
+        }.shadow(radius: 2.5)
     }
 }
 
 struct OverviewExpandView: View {
     
-    var movie: Movie
     @State private var isCollapsed = true
-    
+
+    var movie: Movie
     var imageName: String {
         isCollapsed ? "plus" : "minus"
     }
@@ -93,16 +106,14 @@ struct OverviewExpandView: View {
             Text("Overview").bold()
             Spacer()
             Button(
-                action: { withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) { isCollapsed.toggle() }},
+                action: { isCollapsed.toggle() },
                 label: { Image(systemName: imageName) } )
         }
-
+        
         if isCollapsed {
             EmptyView()
         } else {
-            Text(movie.overview)
-                .fontWeight(.light)
-                .padding(.top, -8)
+            Text(movie.overview).fontWeight(.light)
         }
     }
 }
@@ -120,7 +131,7 @@ struct LoadingView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView(viewModel: MovieListViewModel())
+        MovieListView()
     }
 }
 

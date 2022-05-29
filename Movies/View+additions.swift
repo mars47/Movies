@@ -46,3 +46,10 @@ struct RoundedCornerView: Shape {
         return Path(path.cgPath)
     }
 }
+
+extension Color {
+    
+    static var grouped : some View {
+        Color.init(uiColor: UIColor(named: "Grouped")!)
+    }
+}

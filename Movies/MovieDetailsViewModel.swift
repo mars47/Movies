@@ -20,7 +20,7 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     var isTaglineEnabled : Bool {
-        movie.tagline != nil ? true : false 
+        movie.tagline != nil 
     }
     
     var tagline: String {

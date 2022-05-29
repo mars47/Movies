@@ -14,13 +14,9 @@ struct MovieDetailsView: View {
     var body: some View {
         
         ScrollView {
-            GeometryReader { geometry in
-                StretchyHeaderView(geometry: geometry, viewModel: viewModel)
-            }
-                .frame(height: 400)
             
+            StretchyHeaderView(viewModel: viewModel)
             VStack(spacing: 0) {
-                
                 titleView
                 videoView()
             }
@@ -75,36 +71,39 @@ struct MovieDetailsView: View {
 
 struct StretchyHeaderView: View {
     
-    let geometry: GeometryProxy
-    let viewModel: MovieDetailsViewModel
-
+    @ObservedObject var viewModel: MovieDetailsViewModel
+    
     var backgroundImage: Image {
         viewModel.isBackgoundImageDownloaded ? Image(uiImage: viewModel.image!) : Image(systemName: "person")
     }
     
     var body: some View {
         
-        let isHeaderBeingStretched = !(geometry.frame(in: .global).minY <= 0)
-       
-        ZStack {
+        GeometryReader { geometry in
             
-            if isHeaderBeingStretched {
-                backgroundImage
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
-                .clipped()
-                .offset(y: -geometry.frame(in: .global).minY)
+            let isHeaderBeingStretched = !(geometry.frame(in: .global).minY <= 0)
+            
+            ZStack {
                 
-            } else {
-                backgroundImage
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: geometry.size.width, height: geometry.size.height)
-                .offset(y: geometry.frame(in: .global).minY/9)
-                .clipped()
+                if isHeaderBeingStretched {
+                    backgroundImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
+                        .clipped()
+                        .offset(y: -geometry.frame(in: .global).minY)
+                    
+                } else {
+                    backgroundImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(y: geometry.frame(in: .global).minY/9)
+                        .clipped()
+                }
             }
-        }
+            
+        }.frame(height: 400)
     }
 }
 

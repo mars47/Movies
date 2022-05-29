@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -25,6 +26,18 @@ class NetworkManager {
         do {
             let (data, _) = try await URLSession.shared.data(from: URLFactory.movieDetails(movieId: movieId))
             return try JSONDecoder().decode(Movie.self, from: data)
+        } catch {
+            print("caught: \(error)")
+        }
+            return nil
+    }
+    
+    static func fetchImage(for url: URL) async -> UIImage? {
+                
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+            
         } catch {
             print("caught: \(error)")
         }

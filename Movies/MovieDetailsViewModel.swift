@@ -6,18 +6,25 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieDetailsViewModel: ObservableObject {
     
     @Published var movie: Movie
     @Published var isFetching = true
-
+    @Published var image: UIImage?
+    let videoHeight = UIScreen.main.bounds.height / 3.5
+    
+    var isBackgoundImageDownloaded: Bool {
+        image != nil
+    }
+    
     var isTaglineEnabled : Bool {
         movie.tagline != nil ? true : false 
     }
     
     var tagline: String {
-        "\"\(movie.tagline!)\""
+        "- \"\(movie.tagline!)\""
     }
 
     init(movie: Movie) {
@@ -32,5 +39,18 @@ class MovieDetailsViewModel: ObservableObject {
                 self.isFetching = false
             }
         }
+    
+    func fetchBackgroundImage(url: URL?) async {
+        
+        guard
+            let url = url,
+            let image = await NetworkManager.fetchImage(for: url)
+        else { return }
+        
+        DispatchQueue.main.async {
+            self.image = image 
+        }
+        
+    }
 }
 

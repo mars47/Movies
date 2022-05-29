@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MovieListView: View {
-        
+            
     @StateObject var viewModel = MovieListViewModel()
         
     var body: some View {
@@ -29,8 +29,6 @@ struct MovieListView: View {
                         .listRowBackground(Color.clear)
                     }
                 }
-               
-                
                 //.listStyle(.plain)
                 .navigationBarTitle(Text("Latest Movies"), displayMode: .large)
             }
@@ -53,16 +51,17 @@ struct MovieItemView: View {
                 
                 AsyncImage(url: movie.posterUrl) { image in
                     image.resizable().scaledToFill() }
-            placeholder: { ProgressView() }
+                    placeholder: { ProgressView() }
                 
                 Text(movie.title)
                     .bold().padding().frame(maxWidth: .infinity)
                     .background(Color.white.opacity(0.65))
                 
                 let viewModel = MovieDetailsViewModel(movie: movie)
-                NavigationLink(destination: MovieDetailsView(viewModel: viewModel)
+                NavigationLink(destination: MovieDetailsView(viewModel:viewModel)
                     .task {
                         await viewModel.fetchMovieDetails(id: "\(movie.id)")
+                        await viewModel.fetchBackgroundImage(url: movie.backdropUrl)
                     }) { EmptyView() }.buttonStyle(PlainButtonStyle())
                 
             }
@@ -75,7 +74,7 @@ struct MovieItemView: View {
                     Text("Released: \(movie.releaseDate)").fontWeight(.light)
                     Spacer()
                     HStack() {
-                        Text(movie.voteAverageString).fontWeight(.light)
+                        Text(movie.voteAverageString)
                         Image(systemName: "star.fill")
                     }
                     .foregroundColor(Color.yellow)
@@ -87,7 +86,8 @@ struct MovieItemView: View {
             .background(Color.white)
             .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
             .buttonStyle(BorderlessButtonStyle())
-        }.shadow(radius: 2.5)
+        }
+        .shadow(radius: 2.5)
     }
 }
 

@@ -14,6 +14,7 @@ class NetworkManager {
                 
         do {
             let (data, _) = try await URLSession.shared.data(from: URLFactory.upcomingMovies())
+            
             return try JSONDecoder().decode(Root.self, from: data)
         } catch {
             print("caught: \(error)")

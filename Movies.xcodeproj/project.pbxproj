@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0716D13C284FF68400537772 /* StretchyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716D13B284FF68400537772 /* StretchyHeaderView.swift */; };
+		0716D13E284FFE8E00537772 /* ExpandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716D13D284FFE8E00537772 /* ExpandingView.swift */; };
 		07F447CE283920530034A69B /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447CD283920530034A69B /* MoviesApp.swift */; };
 		07F447D0283920530034A69B /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447CF283920530034A69B /* MovieListView.swift */; };
 		07F447D2283920560034A69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F447D1283920560034A69B /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0716D13B284FF68400537772 /* StretchyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderView.swift; sourceTree = "<group>"; };
+		0716D13D284FFE8E00537772 /* ExpandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingView.swift; sourceTree = "<group>"; };
 		07F447CA283920530034A69B /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F447CD283920530034A69B /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		07F447CF283920530034A69B /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				07F447F9283ED9710034A69B /* VideoView.swift */,
+				0716D13B284FF68400537772 /* StretchyHeaderView.swift */,
+				0716D13D284FFE8E00537772 /* ExpandingView.swift */,
 			);
 			name = "Supporting Views";
 			sourceTree = "<group>";
@@ -225,12 +231,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F447EB28399B150034A69B /* Movie.swift in Sources */,
+				0716D13C284FF68400537772 /* StretchyHeaderView.swift in Sources */,
 				07F447F3283D6D700034A69B /* String+readableDate.swift in Sources */,
 				07F447F5283DA2370034A69B /* MovieDetailsView.swift in Sources */,
 				07F447F1283BDB450034A69B /* View+additions.swift in Sources */,
 				07F447ED283B00060034A69B /* Root.swift in Sources */,
 				07F447E1283930C90034A69B /* NetworkManager.swift in Sources */,
 				07F447D0283920530034A69B /* MovieListView.swift in Sources */,
+				0716D13E284FFE8E00537772 /* ExpandingView.swift in Sources */,
 				07F447CE283920530034A69B /* MoviesApp.swift in Sources */,
 				07F447F8283EC14A0034A69B /* MovieDetailsViewModel.swift in Sources */,
 				07F447DC2839256F0034A69B /* MovieListViewModel.swift in Sources */,

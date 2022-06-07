@@ -42,79 +42,62 @@ struct MovieListView: View {
 struct MovieItemView: View {
     
     var movie: Movie
-    
+        
     var body: some View {
         
+        let viewModel = MovieDetailsViewModel(movie: movie)
+
         VStack(spacing:0) {
             
-            ZStack(alignment: .topLeading){
-                
-                AsyncImage(url: movie.posterUrl) { image in
-                    image.resizable().scaledToFill() }
-                    placeholder: { ProgressView() }
-                
-                Text(movie.title)
-                    .bold().padding().frame(maxWidth: .infinity)
-                    .background(Color.white.opacity(0.65))
-                
-                let viewModel = MovieDetailsViewModel(movie: movie)
-                NavigationLink(destination: MovieDetailsView(viewModel:viewModel)
-                    .task {
-                        await viewModel.fetchMovieDetails(id: "\(movie.id)")
-                        await viewModel.fetchBackgroundImage(url: movie.backdropUrl)
-                    }) { EmptyView() }.buttonStyle(PlainButtonStyle())
-                
-            }
-            .cornerRadius(12, corners: [.topLeft, .topRight])
-            .buttonStyle(BorderlessButtonStyle())
-            
-            VStack(spacing:8) {
-                
-                HStack() {
-                    Text("Released: \(movie.releaseDate)").fontWeight(.light)
-                    Spacer()
-                    HStack() {
-                        Text(movie.voteAverageString)
-                        Image(systemName: "star.fill")
-                    }
-                    .foregroundColor(Color.yellow)
-                }
-                
-                OverviewExpandView(movie: movie)
-            }
-            .padding(8)
-            .background(Color.white)
-            .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
-            .buttonStyle(BorderlessButtonStyle())
+            movieImage(viewModel)
+            movieInfo
         }
         .shadow(radius: 2.5)
     }
-}
-
-struct OverviewExpandView: View {
     
-    @State private var isCollapsed = true
+    func movieImage(_ viewModel: MovieDetailsViewModel) -> some View {
+        
+        ZStack(alignment: .topLeading) {
+            
+            NavigationLink(destination: MovieDetailsView(viewModel:viewModel)
+                .task {
+                    await viewModel.fetchMovieDetails(id: "\(movie.id)")
+                    await viewModel.fetchBackgroundImage(url: movie.backdropUrl)
+                }) { EmptyView().buttonStyle(.borderless) }
+            
+            AsyncImage(url: movie.posterUrl) { image in
+                image.resizable().scaledToFill() }
+                placeholder: { ProgressView() }
 
-    var movie: Movie
-    var imageName: String {
-        isCollapsed ? "plus" : "minus"
+            Text(movie.title)
+                .bold().padding().frame(maxWidth: .infinity)
+                .background(Color.white.opacity(0.65))
+        }
+        .buttonStyle(.borderless)
+        .cornerRadius(12, corners: [.topLeft, .topRight])
     }
     
-    var body: some View {
+    var movieInfo: some View {
         
-        HStack {
-            Text("Overview").bold()
-            Spacer()
-            Button(
-                action: { isCollapsed.toggle() },
-                label: { Image(systemName: imageName) } )
+        VStack(spacing:8) {
+            
+            HStack() {
+                Text("Released: \(movie.releaseDate)").fontWeight(.light)
+                Spacer()
+                HStack() {
+                    Text(movie.voteAverageString)
+                    Image(systemName: "star.fill")
+                }
+                .foregroundColor(Color.yellow)
+            }
+            
+            ExpandingView(title: "Overview", text: movie.overview)
         }
-        
-        if isCollapsed {
-            EmptyView()
-        } else {
-            Text(movie.overview).fontWeight(.light)
-        }
+        .padding(8)
+        .background(Color.white)
+        .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.roundedRectangle(radius: 20))
     }
 }
 

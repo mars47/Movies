@@ -11,11 +11,15 @@ struct MovieDetailsView: View {
     
     @StateObject var viewModel: MovieDetailsViewModel
 
+    var backgroundImage: Image {
+        viewModel.isBackgoundImageDownloaded ? Image(uiImage: viewModel.image!) : Image(systemName: "person")
+    }
+    
     var body: some View {
         
         ScrollView {
             
-            StretchyHeaderView(viewModel: viewModel)
+            StretchyHeaderView(backgroundImage: backgroundImage)
             VStack(spacing: 0) {
                 titleView
                 videoView()
@@ -68,46 +72,6 @@ struct MovieDetailsView: View {
         }
     }
 }
-
-struct StretchyHeaderView: View {
-    
-    @ObservedObject var viewModel: MovieDetailsViewModel
-    
-    var backgroundImage: Image {
-        viewModel.isBackgoundImageDownloaded ? Image(uiImage: viewModel.image!) : Image(systemName: "person")
-    }
-    
-    var body: some View {
-        
-        GeometryReader { geometry in
-            
-            let isHeaderBeingStretched = !(geometry.frame(in: .global).minY <= 0)
-            
-            ZStack {
-                
-                if isHeaderBeingStretched {
-                    backgroundImage
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
-                        .clipped()
-                        .offset(y: -geometry.frame(in: .global).minY)
-                    
-                } else {
-                    backgroundImage
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(y: geometry.frame(in: .global).minY/9)
-                        .clipped()
-                }
-            }
-            
-        }.frame(height: 400)
-    }
-}
-
-    
 
 //struct MovieDetailsView_Previews: PreviewProvider {
 //    static var previews: some View {

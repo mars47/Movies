@@ -16,7 +16,11 @@ extension View {
     
     func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
         
-        NavigationView {
+        if !binding.wrappedValue {
+            return AnyView(EmptyView())
+        }
+        
+        return ( AnyView(NavigationView {
             ZStack {
                 self
                     .navigationBarTitle("")
@@ -31,8 +35,8 @@ extension View {
                     EmptyView()
                 }
             }
-        }
-        .navigationViewStyle(.stack)
+        }.navigationViewStyle(.stack)))
+        
     } //.navigate(to: MainPageView(), when: $willMoveToNextScreen)
 }
 

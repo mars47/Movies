@@ -32,13 +32,13 @@ class MovieDetailsViewModel: ObservableObject {
     }
         
     func fetchMovieDetails(id: String) async {
-            
-            guard let movie = await NetworkManager.fetchMovieDetails(movieId: id) else { return }
-            DispatchQueue.main.async {
-                self.movie = movie
-                self.isFetching = false
-            }
+        
+        guard let movie = await NetworkManager.fetchMovieDetails(movieId: id) else { return }
+        DispatchQueue.main.async {
+            self.movie = movie
+            self.isFetching = false
         }
+    }
     
     func fetchBackgroundImage(url: URL?) async {
         

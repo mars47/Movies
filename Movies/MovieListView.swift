@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieListView: View {
             
-    @StateObject var viewModel = MovieListViewModel()
+    @StateObject var viewModel: MovieListViewModel
         
     var body: some View {
         
@@ -45,19 +45,19 @@ struct MovieItemView: View {
         
     var body: some View {
         
-        let viewModel = MovieDetailsViewModel(movie: movie)
-
         VStack(spacing:0) {
             
-            movieImage(viewModel)
+            movieImage
             movieInfo
         }
         .shadow(radius: 2.5)
     }
     
-    func movieImage(_ viewModel: MovieDetailsViewModel) -> some View {
+    var movieImage: some View {
         
-        ZStack(alignment: .topLeading) {
+        let viewModel = MovieDetailsViewModel(movie: movie)
+
+        return ZStack(alignment: .topLeading) {
             
             NavigationLink(destination: MovieDetailsView(viewModel:viewModel)
                 .task {
@@ -66,7 +66,9 @@ struct MovieItemView: View {
                 }) { EmptyView().buttonStyle(.borderless) }
             
             AsyncImage(url: movie.posterUrl) { image in
-                image.resizable().scaledToFill() }
+                image
+                .resizable()
+                .scaledToFill() }
                 placeholder: { ProgressView() }
 
             Text(movie.title)
@@ -95,9 +97,9 @@ struct MovieItemView: View {
         }
         .padding(8)
         .background(Color.white)
-        .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle(radius: 20))
+        .cornerRadius(12, corners: [.bottomRight, .bottomLeft])
     }
 }
 
@@ -114,7 +116,7 @@ struct LoadingView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView()
+        MovieListView(viewModel: MovieListViewModel())
     }
 }
 

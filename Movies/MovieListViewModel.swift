@@ -14,8 +14,13 @@ class MovieListViewModel: ObservableObject {
    
     func fetchUpcomingMovies() async {
         
-        isFetching = true
-        guard let movies = await NetworkManager.fetchUpcomingMovies()?.movies else { return }
+        DispatchQueue.main.async {
+            self.isFetching = true
+        }
+        
+        guard let movies = await NetworkManager.fetchUpcomingMovies()?.movies else { 
+            return
+        }
         DispatchQueue.main.async {
             self.movies = movies
             self.isFetching = false

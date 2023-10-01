@@ -8,7 +8,7 @@
 	<string>/movie/{movieId}?api_key={key}&amp;append_to_response=videos</string>
 	<key>movies</key>
 	<string>/discover/movie?api_key={key}&amp;language=en-US&amp;sort_by=popularity.desc&amp;include_video=true&amp;page=1&amp;release_date.gte={date}&amp;with_watch_monetization_types=flatrate </string>
-	<key>imageBase</key>
+	<key>imageURL</key>
 	<string>http://image.tmdb.org/t/p/w500/{imageId}</string>
 	<key>base</key>
 	<string>https://api.themoviedb.org/3</string>

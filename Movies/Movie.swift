@@ -24,7 +24,7 @@ struct Movie : Codable, Identifiable {
     let overview: String
     let popularity: Double
     let poster_path: String
-    let backdrop_path: String
+    let backdrop_path: String?
     let release_date: String
     let title : String
     let vote_average: Double
@@ -37,7 +37,9 @@ struct Movie : Codable, Identifiable {
     let status: String?
     let tagline: String?
     let videos: VideoResult?
-    
+}
+
+extension Movie {
     /** Non-codable custom properties **/
     var trailerId: String {
         let id = videos?.results.first(where: { $0.type == "Trailer"})?.key
@@ -53,9 +55,10 @@ struct Movie : Codable, Identifiable {
         return URLFactory.imageURL(for: poster_path)
     }
     var backdropUrl: URL? {
-        return URLFactory.imageURL(for: backdrop_path)
+        backdrop_path.flatMap { URLFactory.imageURL(for: $0) }
     }
 }
+
 
 // MARK:  Movie Child Models
 

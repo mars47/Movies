@@ -13,8 +13,8 @@ class NetworkManager {
     static func fetchUpcomingMovies() async -> Root? {
                 
         do {
-            let (data, _) = try await URLSession.shared.data(from: URLFactory.upcomingMovies())
             
+            let (data, _) = try await URLSession.shared.data(for: URLFactory.upcomingMovies())
             return try JSONDecoder().decode(Root.self, from: data)
         } catch {
             print("caught: \(error)")
@@ -25,7 +25,7 @@ class NetworkManager {
     static func fetchMovieDetails(movieId: String) async -> Movie? {
                 
         do {
-            let (data, _) = try await URLSession.shared.data(from: URLFactory.movieDetails(movieId: movieId))
+            let (data, _) = try await URLSession.shared.data(for: URLFactory.movieDetails(movieId: movieId))
             return try JSONDecoder().decode(Movie.self, from: data)
         } catch {
             print("caught: \(error)")

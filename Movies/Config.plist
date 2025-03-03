@@ -12,7 +12,7 @@
 	<string>http://image.tmdb.org/t/p/w500/{imageId}</string>
 	<key>base</key>
 	<string>https://api.themoviedb.org/3</string>
-	<key>API_key</key>
+	<key>bearerToken</key>
 	<string></string>
 </dict>
 </plist>

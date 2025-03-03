@@ -12,24 +12,46 @@ class URLFactory {
     static private var base : String {
         URLFactory.config()["base"] as! String
     }
-    static private var api_key : String {
-        URLFactory.config()["API_key"] as! String
+    static private var bearerToken : String {
+        URLFactory.config()["bearerToken"] as! String
     }
     
-    static func upcomingMovies() -> URL {
+    static func upcomingMovies() -> URLRequest {
         
-        var urlString = base + ( config()["movies"] as! String )
-        urlString = urlString.replacingOccurrences(of: "{key}", with: api_key)
-        urlString = urlString.replacingOccurrences(of: "{date}", with: Date().stringValue)
-        return URL(string: urlString)!
+            let url = URL(string: "https://api.themoviedb.org/3/discover/movie")!
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+            let queryItems: [URLQueryItem] = [
+              URLQueryItem(name: "include_video", value: "true"),
+              URLQueryItem(name: "language", value: "en-US"),
+              URLQueryItem(name: "page", value: "1"),
+              URLQueryItem(name: "primary_release_date.gte", value: Date().stringValue),
+              URLQueryItem(name: "sort_by", value: "popularity.desc"),
+            ]
+            components.queryItems = (components.queryItems ?? []) + queryItems
+            
+        var request = URLRequest(url: components.url!)
+            request.httpMethod = "GET"
+            request.timeoutInterval = 10
+            request.allHTTPHeaderFields = [
+              "accept": "application/json",
+              "Authorization": "Bearer \(bearerToken)"
+            ]
+        return request
     }
     
-    static func movieDetails(movieId: String) -> URL {
+    static func movieDetails(movieId: String) -> URLRequest {
         
         var urlString = base + ( config()["movieDetails"] as! String )
-        urlString = urlString.replacingOccurrences(of: "{key}", with: api_key)
         urlString = urlString.replacingOccurrences(of: "{movieId}", with: movieId)
-        return URL(string: urlString)!
+        
+        var request = URLRequest(url: URL(string: urlString)!)
+            request.httpMethod = "GET"
+            request.timeoutInterval = 10
+            request.allHTTPHeaderFields = [
+              "accept": "application/json",
+              "Authorization": "Bearer \(bearerToken)"
+            ]
+        return request
     }
     
     static func imageURL(for id: String) -> URL? {
